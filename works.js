@@ -1,4 +1,4 @@
-// One project, eight collections. Each of the 44 references appears once.
+// One project, seven collections. Each of the 32 references appears once.
 window.LUO_PROJECT = {
  title:'沙谕 AIGC',year:'2026',video:'assets/shayu.mp4',poster:'assets/film-poster.webp',
  categories:[
@@ -11,7 +11,6 @@ window.LUO_PROJECT = {
   {id:'guard',title:'守卫长',en:'CHARACTER / 03',images:[29,26,28,27,30]},
   {id:'creature',title:'巨兽',en:'CREATURE DESIGN',images:[37,36,38,39]},
   {id:'props',title:'道具设计',en:'PROPS & MATERIALS',images:[42,43,44]},
-  {id:'frames',title:'关键镜头',en:'KEYFRAMES',images:[3,2,1,4,5,6,7,8,9,10,11,12]},
   {id:'scale',title:'角色比例',en:'SCALE & RELATIONSHIPS',images:[40,41]}
  ]
 };

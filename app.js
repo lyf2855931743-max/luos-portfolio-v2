@@ -22,7 +22,7 @@ function preload(id) {
 const characterCategory=project.categories.find(category=>category.id==='characters');
 const characterGroups=characterCategory.collections.map(id=>project.collections.find(group=>group.id===id));
 const characterCard={...characterCategory,children:characterGroups,images:characterGroups.flatMap(group=>group.images)};
-const topLevelGroups=['environment','characters','props','frames'].map(id=>id==='characters'?characterCard:project.collections.find(group=>group.id===id));
+const topLevelGroups=['environment','characters','props'].map(id=>id==='characters'?characterCard:project.collections.find(group=>group.id===id));
 const backCategory=document.querySelector('#back-category');
 let categoryOpener=null;
 function createCollectionCard(group, nested=false){
