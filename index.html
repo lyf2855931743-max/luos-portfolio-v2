@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff"><meta name="description" content="LUO’S — AIGC 影像与视觉设计作品集。">
+<title>LUO’S — Visual worlds, imagined.</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+<link rel="preload" as="image" href="assets/hero/hero-01.webp" fetchpriority="high">
+<script src="works.js" defer></script><script src="app.js" defer></script><script src="scroll.js" defer></script><script src="cursor.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#work">跳至作品</a>
+<main id="top">
+<div class="intro-stage">
+<header class="topbar"><a class="wordmark" href="#top">LUO’S</a><p class="discipline">Independent designer.<br>Imagining worlds through AI,<br>film & visual development.</p><nav aria-label="主导航"><a href="#work">Work ↘</a><a href="#about">About ↗</a></nav></header>
+<section class="hero" aria-label="LUO’S 动态作品展示">
+<canvas id="trail" aria-hidden="true"></canvas>
+<canvas id="letter-image" aria-hidden="true"></canvas>
+<div class="hero-notes"><span>IMAGINATION TAKES SHAPE.</span><span id="image-count" aria-live="polite">01 / 05</span></div>
+<h1>LUO’S<span id="wordmark-baseline" aria-hidden="true"></span></h1>
+<div class="hero-baseline"><span>AIGC / FILM / VISUAL WORLDS</span><div class="hero-controls"><button id="next-art">CLICK TO CHANGE ↗</button><button id="pause" aria-label="暂停首屏动效">Ⅱ</button></div><a href="#work">DIVE INTO THE WORK ↓</a></div>
+</section>
+</div>
+<div class="work-surface">
+<section id="work" class="project" aria-labelledby="project-title">
+<div class="section-kicker"><span>01 — SELECTED PROJECT</span><span>AIGC FILM & VISUAL DEVELOPMENT</span></div>
+<div class="project-heading"><h2 id="project-title">沙谕 <span>AIGC</span></h2><p>一个世界，一段影像。<br><span>角色 · 环境 · 道具 · 关键镜头</span></p><span class="project-year">2026 / 00:37</span></div>
+<div class="film-stage"><video id="project-film" controls playsinline preload="none" aria-label="播放《沙谕 AIGC》完整影片"><source src="assets/shayu.mp4" type="video/mp4">你的浏览器不支持此视频。</video><button id="play-film" class="play-film"><span class="play-icon">▶</span><span>PLAY FILM <small>《沙谕 AIGC》 / 00:37</small></span></button></div>
+<div class="film-caption"><span>《沙谕 AIGC》 — 完整影像</span><span>FILM / 01</span></div>
+<div class="collection-heading"><h3>Inside the world.<span>视觉设定与参考图集</span></h3><button id="pause-covers" aria-pressed="false">暂停封面轮播 Ⅱ</button></div>
+<div class="collections" id="collections" aria-label="项目参考图集"></div>
+<div class="project-end"><span>1 FILM / 4 CATEGORIES / 8 COLLECTIONS / 44 IMAGES</span><a href="#top">BACK TO TOP ↑</a></div>
+</section>
+<section class="other-work"><span class="eyebrow">02 — VISUAL EXPLORATIONS</span><div><h2>其他 AI 视觉作品</h2><p>更多独立创作，陆续整理中。</p></div></section>
+<section id="about" class="about"><span class="eyebrow">03 — ABOUT</span><div><h2>让想象有形。<br><span>Make the imagined real.</span></h2><p>我是 LUO，一名设计师。以 AI 为创作媒介，探索影像、角色、空间与物件之间的关系。从一个视觉概念出发，构建属于它的世界。</p></div></section>
+<footer><a href="#top" class="footer-logo">LUO’S</a><span>© 2026 LUO’S<br>IMAGINATION IS ONLY THE BEGINNING.</span><a href="#work">EXPLORE THE WORK ↗</a></footer>
+</div>
+</main>
+<dialog id="collection-dialog" aria-labelledby="collection-title"><div class="dialog-toolbar"><div class="collection-navigation"><button id="back-category" hidden>← 返回角色设计</button><span id="collection-label"></span></div><button id="close-collection" aria-label="关闭图集">CLOSE ×</button></div><div class="collection-intro"><h2 id="collection-title"></h2><p id="collection-info"></p></div><div id="collection-grid" class="collection-grid"></div></dialog>
+<dialog id="viewer" aria-labelledby="viewer-title"><div class="dialog-toolbar"><span id="viewer-index"></span><button id="close-viewer" aria-label="返回图集">BACK TO COLLECTION ×</button></div><div id="viewer-media"></div><div class="viewer-bottom"><button id="prev-work" aria-label="上一张">←</button><h2 id="viewer-title"></h2><button id="next-work" aria-label="下一张">→</button></div></dialog>
+</body></html>
