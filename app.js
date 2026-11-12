@@ -184,7 +184,7 @@ for(let i=0;i<grainPixels.data.length;i+=4){
 }
 grainCtx.putImageData(grainPixels,0,0);
 const grainPattern=letterCtx.createPattern(grain,'repeat');
-const sources=[1,2,3,4,5].map(id=>`assets/hero/hero-${String(id).padStart(2,'0')}.webp`);
+const sources=[1,2,3,4,5,6,7].map(id=>`assets/hero/hero-${String(id).padStart(2,'0')}.webp`);
 const images=sources.map(()=>new Image()),monochrome=[],heroLoads=[];
 // Decode one image at a time, with the first image taking network priority.
 function loadHero(index){
