@@ -1,4 +1,4 @@
-// One project, seven collections. Each of the 32 references appears once.
+// Shayu: seven collections, 32 references. Danqingdu: two collections, four references.
 window.LUO_PROJECT = {
  title:'沙谕 AIGC',year:'2026',video:'assets/shayu.mp4',poster:'assets/film-poster.webp',
  categories:[
@@ -14,4 +14,16 @@ window.LUO_PROJECT = {
   {id:'scale',title:'角色比例',en:'SCALE & RELATIONSHIPS',images:[40,41]}
  ]
 };
-window.LUO_IMAGE = id => `assets/art-${String(id).padStart(2,'0')}.webp`;
+window.LUO_REMIX = {
+ title:'丹青渡二创鬼畜 · 终有得祀',
+ poster:'assets/danqingdu/film-poster.webp',
+ collections:[
+  {id:'danqingdu-characters',title:'角色设定',en:'CHARACTER STUDIES',projectTitle:'丹青渡二创鬼畜',images:[
+   'assets/danqingdu/character-four-view.webp',
+   'assets/danqingdu/character-sheet.webp',
+   'assets/danqingdu/style-study.webp'
+  ]},
+  {id:'danqingdu-props',title:'道具设计',en:'PROP DESIGN',projectTitle:'丹青渡二创鬼畜',images:['assets/danqingdu/red-crystal.webp']}
+ ]
+};
+window.LUO_IMAGE = id => typeof id==='string' ? id : `assets/art-${String(id).padStart(2,'0')}.webp`;

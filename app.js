@@ -1,7 +1,7 @@
 (() => {
 'use strict';
 const project = window.LUO_PROJECT, imagePath = window.LUO_IMAGE;
-const coverPath = id => `assets/covers/art-${String(id).padStart(2,'0')}.webp`;
+const coverPath = id => typeof id==='string' ? id : `assets/covers/art-${String(id).padStart(2,'0')}.webp`;
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const collectionDialog = document.querySelector('#collection-dialog');
 const viewer = document.querySelector('#viewer'), grid = document.querySelector('#collection-grid');
@@ -38,6 +38,27 @@ const cards = topLevelGroups.map(group => {
  document.querySelector('#collections').append(card);
  return {card,group,front:0,images:card.querySelectorAll('.cover img')};
 });
+const remix = window.LUO_REMIX;
+remix.collections.forEach(group=>{
+ const card=createCollectionCard(group);
+ document.querySelector('#danqingdu-collections').append(card);
+});
+// Share the gallery viewer while keeping each project's title and references together.
+const remixCards=[...document.querySelectorAll('#danqingdu-collections .collection-card')];
+const remixCoverLoader=new IntersectionObserver(entries=>{
+ if(!entries.some(entry=>entry.isIntersecting))return;
+ remixCards.forEach(card=>{const im=card.querySelector('img[data-src]');im.src=im.dataset.src;});
+ remixCoverLoader.disconnect();
+},{rootMargin:'250px 0px'});
+remixCoverLoader.observe(document.querySelector('#danqingdu-collections'));
+const remixFilm=document.querySelector('#danqingdu-film');
+const remixPosterLoader=new IntersectionObserver(entries=>{
+ if(!entries.some(entry=>entry.isIntersecting))return;
+ remixFilm.poster=remix.poster;remixPosterLoader.disconnect();
+},{rootMargin:'300px 0px'});
+remixPosterLoader.observe(remixFilm);
+const films=[film,remixFilm];
+function pauseFilms(){films.forEach(video=>video.pause());}
 // One clock: every cover changes in the same tick, every five seconds.
 function rotateCovers(){
  const next = coverStep+1;
@@ -81,7 +102,7 @@ coverButton.addEventListener('click',()=>{
 });
 syncCoverButton();
 function openCategory(opener=categoryOpener,focusId=null){
- categoryOpener=opener;collectionOpener=opener;collection=null;film.pause();
+ categoryOpener=opener;collectionOpener=opener;collection=null;pauseFilms();
  backCategory.hidden=true;
  document.querySelector('#collection-title').textContent=characterCard.title;
  document.querySelector('#collection-label').textContent='沙谕 AIGC / CHARACTER DESIGN';
@@ -99,10 +120,10 @@ collectionDialog.addEventListener('cancel',event=>{
  if(event.target===collectionDialog&&!backCategory.hidden){event.preventDefault();openCategory(categoryOpener,collection?.id);}
 });
 function openCollection(group,opener,nested=false){
- collection=group; if(!nested)collectionOpener=opener; film.pause();
+ collection=group; if(!nested)collectionOpener=opener; pauseFilms();
  backCategory.hidden=!nested;
  document.querySelector('#collection-title').textContent=group.title;
- document.querySelector('#collection-label').textContent=`沙谕 AIGC / ${group.en}`;
+ document.querySelector('#collection-label').textContent=`${group.projectTitle||project.title} / ${group.en}`;
  document.querySelector('#collection-info').textContent=`${group.images.length} 张参考图片 · 点击任意图片放大查看`;
  grid.replaceChildren();grid.classList.remove('category-grid');
  group.images.forEach((id,index)=>{
@@ -136,6 +157,13 @@ viewer.addEventListener('keydown',event=>{
 playFilm.addEventListener('click',()=>film.play().catch(()=>{playFilm.hidden=true;film.focus();}));
 film.addEventListener('play',()=>{playFilm.hidden=true;});
 film.addEventListener('ended',()=>{playFilm.hidden=false;});
+const playRemixFilm=document.querySelector('#play-danqingdu-film');
+playRemixFilm.addEventListener('click',()=>remixFilm.play().catch(()=>{playRemixFilm.hidden=true;remixFilm.focus();}));
+remixFilm.addEventListener('play',()=>{playRemixFilm.hidden=true;});
+remixFilm.addEventListener('ended',()=>{playRemixFilm.hidden=false;});
+films.forEach(video=>video.addEventListener('play',()=>{
+ films.forEach(other=>{if(other!==video)other.pause();});
+}));
 
 // Diagonal travel and edge reflection, with a short, separated image trail.
 // The wordmark masks a second, monochrome photographic layer. No color inversion.

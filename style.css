@@ -100,3 +100,15 @@ dialog::backdrop{background:#080808}
  html.custom-cursor-active video{cursor:auto!important}
 }
 @media(prefers-reduced-motion:reduce){.portfolio-cursor,.portfolio-cursor-dot,.portfolio-cursor-arrow{transition:none}}
+
+/* The second film follows the same project rhythm, in its original 16:9 frame. */
+.additional-project{margin-top:115px}
+.remix-film-stage{aspect-ratio:16/9}
+.additional-collections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:start}
+.additional-collections>.collection-card{margin:0;min-width:0}
+.additional-collections .cover{aspect-ratio:4/3}
+@media(max-width:600px){
+ .additional-project{margin-top:75px}
+ .additional-collections{grid-template-columns:1fr;gap:28px}
+ .remix-film-stage{aspect-ratio:16/9}
+}
